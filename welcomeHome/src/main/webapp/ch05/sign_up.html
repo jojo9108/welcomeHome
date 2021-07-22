@@ -2,96 +2,99 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign_up</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign_up</title>
 </head>
-
 <body>
-    <caption>
-        <h3>회원가입</h3>
-    </caption>
-    <table>
-        <tr>
-            <td>아이디</td>
-            <td><input type="text" name="user_id" id="user_id">
-                <input type="submit" value="중복확인"></td>
-        </tr>
-        <tr>
-            <td rowspan="2">
-                비밀번호
-            </td>
-            <td><input type="password" name="user_pw" id="user_pw"></td>
-        </tr>
-        <tr>
-            <td><input type="password" name="user_rpw" size="15" placeholder="비밀번호 재확인"></td>
-        </tr>
-        <tr>
-            <td>
-                이름
-            </td>
-            <td><input type="text" name="user_name" id="user_name"></td>
-        </tr>
-        <tr>
-            <td rowspan="2">
-                주소
-            </td>
-            <td><input type="text" name="user_add" id="user_add">
-                <input type="text" name="user_add" id="user_add">
-                <input type="submit" value="우편번호"></td>
-        </tr>
-        <tr>
-            <td><input type="text" name="user_add" id="user_add">
-                <input type="text" name="user_add" id="user_add"></td>
-        </tr>
-        <tr>
-            <td>
-                휴대전화
-            </td>
-            <td><input type="tel" name="user_pn" id="user_pn">
-                <input type="text" name="user_pn" id="user_pn">
-                <input type="text" name="user_pn" id="user_pn"></td>
-        </tr>
-        <tr>
-            <td>
-                전화번호
-            </td>
-            <td><input type="tel" name="user_tel" id="user_tel">
-                <input type="tel" name="user_tel" id="user_tel">
-                <input type="tel" name="user_tel" id="user_tel"></td>
+	<caption>
+		<h3>회원가입</h3>
+	</caption>
+	<table>
+		<tr>
+			<td><li>아이디</li></td>
+			<td><input type="text" style="width: 87px;" name="user_id"
+				id="user_id"> <input type="submit" value="중복확인"></td>
+		</tr>
+		<tr>
+			<td><li>비밀번호</li></td>
+			<td><input type="password" name="user_pw" id="user_pw">
+				<br> <input type="password" name="user_rpw"
+				placeholder="비밀번호 재확인"></td>
+		</tr>
+		<tr>
+			<td><li>이름</li></td>
+			<td><input type="text" name="user_name" id="user_name"></td>
+		</tr>
+		<tr>
+			<td><li>주소</li></td>
+			<td><input type="text" style="width: 30.5px;" name="user_add"
+				id="user_add"> - <input type="text" style="width: 30.5px;"
+				name="user_add" id="user_add"> <input type="submit"
+				value="우편번호"> <br> <input type="text" name="user_add"
+				id="user_add"> <br> <input type="text" name="user_add"
+				id="user_add"></td>
+		</tr>
+		<tr>
+			<td><li>휴대전화</li></td>
+			<td><select style="width: 55px;" name="휴대폰">
+					<option>--없음--</option>
+					<option>010</option>
+					<option>011</option>
+					<option>012</option>
+					<option>016</option>
+					<option>017</option>
+					<option>018</option>
+			</select> <input type="text" style="width: 42px;" name="user_pn"
+				id="user_pn"> <input type="text" style="width: 41px;"
+				name="user_pn" id="user_pn"></td>
+		</tr>
+		<tr>
+			<td><li>전화번호</li></td>
+			<td><select style="width: 55px;" name="전화번호">
+					<option>--없음--</option>
+					<option>02</option>
+					<option>031</option>
+					<option>032</option>
+					<option>033</option>
+					<option>053</option>
+					<option>054</option>
+			</select> <input type="tel" style="width: 42px;" name="user_tel"
+				id="user_tel"> <input type="tel" style="width: 41px;"
+				name="user_tel" id="user_tel"></td>
 
-        </tr>
-        <tr>
-            <td>
-                이메일
-            </td>
-            <td><input type="email" name="user_e" id="user_e">
-                <input type="email" name="user_e" id="user_e"></td>
-        </tr>
-        <tr>
-            <td>
-                생년월일
-            </td>
-            <td>
-                <input type="radio" name="user_gen" id="user_gen" value="M">양
-                <input type="radio" name="user_gen" id="user_gen" value="W">음
-                <input type="date" name="user_birth" id="user_birth"></td>
-        </tr>
-        <tr>
-
-            <td><input type="checkbox" name="" id="chk">
-                뿌꾸's world의 이메일을 수신합니다.</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" id="chk">
-                뿌꾸's world의 SMS를 수신합니다.</td>
-        </tr>
-        <tr>
-            <td><input type="reset" value="가입취소" style="background-color: rgb(31, 31, 31);">
-                <input type="submit" value="회원가입" style="background-color: rgb(255, 85, 85);"></td>
-        </tr>
-    </table>
+		</tr>
+		<tr>
+			<td><li>이메일</li></td>
+			<td><input type="email" style="width: 70.5px;" name="user_e"
+				id="user_e"> <select style="width: 87px;" name="이메일">
+					<option>@naver.com</option>
+					<option>@daum.net</option>
+					<option>@gmail.com</option>
+					<option>@hanmail.net</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td><li>생년월일</li></td>
+			<td><input type="radio" name="user_day" id="user_day" value="M">양
+				<input type="radio" name="user_day" id="user_day" value="W">음
+				<br> <input type="date" name="user_birth" id="user_birth"></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="" id="chk"> 뿌꾸's world의
+				이메일을 수신합니다.</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="" id="chk"> 뿌꾸's world의
+				SMS를 수신합니다.</td>
+		</tr>
+		<tr>
+			<td><input type="reset" value="가입취소"
+				style="background-color: rgb(31, 31, 31); color: aliceblue;">
+				<input type="submit" value="회원가입"
+				style="background-color: rgb(255, 85, 85); color: aliceblue;"></td>
+		</tr>
+	</table>
 </body>
-
 </html>
