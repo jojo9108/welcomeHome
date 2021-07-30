@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attribute</title>
+    <style>
+        p[text] {
+            font-size: larger;
+        }
+
+        p[text="hello"] {
+            color: navy;
+        }
+
+        p[text="red"] {
+            background-color: red;
+        }
+
+        p[text*='pic'] {
+            background-color: teal;
+        }
+
+        p[text$='com'] {
+            background-color:slateblue ;
+            color: yellow;
+        }
+
+        p[text|='a1'] {
+            background-color: turquoise;
+        }
+
+        P[text*="ong"] {
+            background-color: thistle;
+        }
+    </style>
+</head>
+
+<body>
+    <p text='hello'>텍스트1</p>
+    <p text='red'>텍스트2</p>
+    <p text='http://www.daum.net'>텍스트3</p>
+    <p text='https://www.naver.com'>텍스트3-1</p>
+    <p text='https://www.google.com'>텍스트3-2</p>
+    <p text='a1-a2-a3'>텍스트4</p>
+    <p text='img/pic.jpg'>텍스트5</p>
+    <p text='img/pic.png'>텍스트6</p>
+    <p text='Seongyong Hong'>텍스트7</p>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function2</title>
+</head>
+
+<body id='bdy'>
+    <!--
+    <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Cherry</li>
+    </ul>
+    -->
+    입력: <input type="text" id="inputVal" value="오렌지">
+    <button onclick="addFunc()">추가</button>
+    <script>
+        console.log(this);
+
+        const fruits = ['Apple', 'Banana', 'Cherry', 'Melon'];
+
+        function makeList() {
+            let bodyTag = document.getElementById('bdy'); //id값으로 요소선택
+            let ulTag = document.createElement('ul'); // ul 태그를 생성
+            for (let i = 0; i < fruits.length; i++) { // 복잡해지면 반복문을 사용할것
+                // let appleTag = document.createElement('li'); // li 태그를 생성
+                // let apple = document.createTextNode(fruits[i]); // 텍스트를 생성
+                // appleTag.appendChild(apple);
+                ulTag.appendChild(createList(fruits[i]));
+                // ulTag.removeChild(appleTag);
+                // window.alert('error');
+                // console.log(window.document.URL);
+            }
+            bodyTag.appendChild(ulTag);
+
+        }
+
+        function createList(arg) {
+            //  <li>Apple<button onclick='delFunc()'>Click</button></li>
+            let liTag =  document.createElement('li');
+            let text = document.createTextNode(arg);
+
+            let btn = document.createElement('button'); //태그 생성자(createElement)
+            let delText = document.createTextNode('delete'); 
+            btn.appendChild(delText);
+            btn.onclick = delFunc;
+            liTag.appendChild(text);
+            liTag.appendChild(btn);
+            liTag.onmouseover = function() {
+                this.style.backgroundColor='lightblue';
+            }
+            liTag.onmouseout = function() {
+                this.style.backgroundColor=null;
+            }
+            return liTag;
+        }
+
+        function delFunc() {
+            console.log(this);
+            this.parentNode.remove();
+        }
+        // 사용자 입력값을 사용하여 ul 하위의 자식으로 append(붙여넣기).
+        function addFunc() {
+            let userInput = document.getElementById('inputVal').value;
+            console.log(userInput);
+            let li = createList(userInput); // <li>사용자입력<button></button></li>
+            console.log(li);
+            let ulTag = document.getElementsByTagName('ul');
+            console.log(ulTag[0]);
+            ulTag[0].appendChild(li);
+        }
+        makeList(); //호출을 해야만 실행
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+p {
+    color: dodgerblue;
+}
+
+h2 {
+    background-color: indigo;
+}
+
+h2#show {
+    color: lawngreen;
+    font-style: italic;
+}
+
+.show {
+    font-size: x-large;
+}
+
+input[type=text] {
+    width: 100px;
+    background-color: fuchsia;
+    border-style: none;
+}
+

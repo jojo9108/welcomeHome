@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>variable</title>
+    <!-- <script src="js/variable3.js"></script> -->
+    <script>
+        let num1 = 10;
+        console.log('global: ' + num1);
+        
+
+        function tempFnc() {
+            let num1 = 20; //let 또는 const라는 변수를 선언해서 사용할것.
+            num2 = 30;
+            console.log('local: ' + num1 + ', ' + num2);
+        }
+        tempFnc();
+        console.log('local: ' + num1 + ', ' + num2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

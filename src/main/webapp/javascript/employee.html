@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+    <script src="js/employee.js"></script>
+    <script>
+        let jsonData =
+            `[{"id":1,"first_name":"Adda","last_name":"Brannigan","email":"abrannigan0@topsy.com","gender":"Genderqueer"},
+            {"id":2,"first_name":"Terry","last_name":"Cooch","email":"tcooch1@ow.ly","gender":"Polygender"},
+            {"id":3,"first_name":"Henderson","last_name":"Gresswood","email":"hgresswood2@webnode.com","gender":"Non-binary"},
+            {"id":4,"first_name":"Deeann","last_name":"Bradford","email":"dbradford3@japanpost.jp","gender":"Male"},
+            {"id":5,"first_name":"Blythe","last_name":"Kornes","email":"bkornes4@wisc.edu","gender":"Genderqueer"},
+            {"id":6,"first_name":"Corbin","last_name":"Ebbin","email":"cebbin5@japanpost.jp","gender":"Agender"},
+            {"id":7,"first_name":"Maxine","last_name":"Laker","email":"mlaker6@zimbio.com","gender":"Agender"},
+            {"id":8,"first_name":"Ringo","last_name":"Christie","email":"rchristie7@tumblr.com","gender":"Genderqueer"},
+            {"id":9,"first_name":"Ozzie","last_name":"Aulsford","email":"oaulsford8@unc.edu","gender":"Genderqueer"},
+            {"id":10,"first_name":"Davita","last_name":"Vasiliu","email":"dvasiliu9@lulu.com","gender":"Agender"}]`;
+        
+        console.log(jsonData); // json 데이터
+        let objData = JSON.parse(jsonData); // json => object 변환.
+        console.log(objData);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let tbody = document.querySelector('#list > tbody');
+
+            for (let i = 0; i < objData.length; i++) {
+                let newTr = makeRow(objData[i]); //[i]요소 리턴
+                tbody.appendChild(newTr);
+            }
+            // setAttribute는 속성을 부여
+            document.getElementById('list').setAttribute('border', '1')
+        });
+    </script>
+</head>
+
+<body>
+    <div id="show">
+        <table id='list'>
+            <thead>
+                <tr style="background-color: rgb(168, 168, 168);">
+                    <th>사원번호</th>
+                    <th>First_name</th>
+                    <th>Last_name</th>
+                    <th>이메일</th>
+                    <th>성별</th>
+                    <th>삭제기능</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

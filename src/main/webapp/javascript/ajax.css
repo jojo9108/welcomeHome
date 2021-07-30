@@ -1,0 +1,45 @@
+#show>div:nth-of-type(2n) {
+    background-color: rgb(186, 228, 238);
+}
+
+.row {
+    border: 1px solid slategrey;
+    margin-left: 9px;
+}
+
+span {
+    color: rgb(44, 24, 156);
+    padding: 15px;
+    display: inline-block;
+}
+
+strong {
+    background-color: turquoise;
+    text-align: center;
+    width: 15%;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+strong:nth-of-type(3) {
+    background-color: pink;
+    text-align: center;
+    display: inline-block;
+    width: 300px;
+    margin-left: 15px;
+}
+
+.pagination button {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid rgb(158, 158, 158);
+}
+
+.pagination button.active {
+    background-color: seagreen;
+    color: seashell;
+    border: 1px solid thistle;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title></title>
+    <meta name="generator" content="editplus" />
+    <meta name="author" content="김종현" />
+    <style type="text/css">
+        /*디자인은 큰틀부터 디자인하자.*/
+        #list {
+            width: 500px;
+            border: 1px solid rgb(90, 90, 90);
+            /*겉테두리와 안테두리를 하나로 합쳐준다. */
+            border-collapse: collapse;
+        }
+
+        /* 누구 자식인지 반드시 명시해 준다.*/
+        #list td,
+        #list th {
+            font-size: 12px;
+            border: 1px solid rgb(97, 97, 97);
+            padding: 3px;
+        }
+
+        #list th {
+            background-color: #99b1cc;
+        }
+
+        #list .td1 {
+            width: 20px;
+            text-align: center;
+        }
+
+        #list .td2 {
+            width: 150px;
+            text-align: center;
+        }
+
+        #list .td3 {
+            width: 50px;
+            text-align: center;
+        }
+
+        #list .td4 {
+            width: 50px;
+            text-align: center;
+        }
+
+        /* #list td :nth-last-of-type(1) {
+            width: 2px;
+            padding: 1px;
+        } */
+        #list .td5 {
+            width: 1px;
+        }
+
+        /*부모 자식 관계 */
+        #list .altRow:nth-of-type(odd) {
+            background-color: #ecf5d4;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ex21_board.htm -->
+    <div id='inputForm'>
+        <form name='brd' action="bbb.html" onsubmit="return submitBrd(event)">
+            <label for="num" style="background-color: lightskyblue;">번호: </label>
+            <input type="number" name="num" id="num"><br>
+            <label for="num" style="background-color: lightskyblue;">제목: </label>
+            <input type="text" name="title" id="title"><br>
+            <label for="num" style="background-color: lightskyblue;">이름: </label>
+            <input type="text" name="writer" id="writer"><br>
+            <label for="num" style="background-color: lightskyblue;">날짜: </label>
+            <input type="date" name="regDate" id="regDate"><br>
+            <input type="submit" value="등록" style="width: 100px;">
+            <input type="button" value="수정" style="width: 100px; margin-left: 5px;">
+        </form>
+    </div>
+    <p></p>
+    <h3>게시판 리스트</h3>
+    <button id='delBtn'>선택삭제</button>
+    <table id="list">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>이름</th>
+            <th>날짜</th>
+            <th>선택</th>
+        </tr>
+
+        <tr id ='1'>
+            <td class="td1">1</td>
+            <td class="td2">게시판 만들기 연습입니다.1</td>
+            <td class="td3">홍길동1</td>
+            <td class="td4">2012-01-05</td>
+            <td class="td5"><input type="checkbox"></td>
+        </tr>
+        <tr id ='2' class="altRow">
+            <td class="td1">2</td>
+            <td class="td2">게시판 만들기 연습입니다.2</td>
+            <td class="td3">홍길동2</td>
+            <td class="td4">2012-01-06</td>
+            <td class="td5"><input type="checkbox"></td>
+        </tr>
+
+        <tr id = '3' class="altRow">
+            <td class="td1">3</td>
+            <td class="td2">게시판 만들기 연습입니다.3</td>
+            <td class="td3">홍길동3</td>
+            <td class="td4">2012-01-07</td>
+            <td class="td5"><input type="checkbox"></td>
+        </tr>
+        <tr id = '4' class="altRow">
+            <td class="td1">4</td>
+            <td class="td2">게시판 만들기 연습입니다.4</td>
+            <td class="td3">홍길동4</td>
+            <td class="td4">2012-01-08</td>
+            <td class="td5"><input type="checkbox"></td>
+        </tr>
+
+    </table>
+    <script src = "js/borad.js"></script>
+</body>
+
+</html>
