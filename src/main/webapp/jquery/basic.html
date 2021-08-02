@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic</title>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>
+        // document.getElementById('show')
+        $(document).ready(function() { //선택자 다음에 메소드가 온다.
+            $('#show').html('Hello, World'); // elem.innerHTML = "";
+            // id값이 element인 값을 입력해오겠습니다
+            // 생성.
+            let ul = $('<ul />');
+            ul.append($('<li />').html('Apple'));
+            ul.append($('<li />').html('Banana'));
+        
+            $('#show').append(ul);
+
+            // 삭제.
+            $('ul').remove();
+
+            // 이벤트.
+            let btn = $('<button>Del</button>')
+                        .html('Del')
+                        .on('click', function() {
+                            console.log('delete');
+            });
+            $('#show').append(btn);
+        });
+    </script>
+
+</head>
+<body>
+  <div id = "show"></div>
+</body>
+</html>
