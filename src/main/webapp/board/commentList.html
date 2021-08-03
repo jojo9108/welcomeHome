@@ -31,17 +31,61 @@
 			window.alert(msg);
 		}
 	}
+	
 	function makeCommentView(comment) {
 		let div = document.createElement('div');
-		div.setAttribute('id', comment.children[2].innerHTML);
+	 	let id = comment.children[0].innerHTML;
+		div.setAttribute('id', id);
 
 		let str = '<strong>' + comment.children[1].innerHTML + '</strong>'
 				+ comment.children[2].innerHTML
-				+ '<input type ="button" value="수정" onclick="viewUpdateForm">'
+				+ '<input type ="button" value="수정" onclick="viewUpdateForm(' + id + ')">'
 				+ '<input type ="button" value="삭제" onclick="confirmDeletion">'
 		div.innerHTML = str;
 		return div;
 
+	}
+	//글등록.
+	function addComment() {
+		let name = document.addForm.name.value;
+		let content = document.addForm.content.value;
+		if (name == "") {
+			alert('이름을 입력하세요!');
+			document.addForm.name.focus();
+			return;
+		}
+		if (content == "") {
+			alert('내용을 입력하세요!');
+			document.addForm.content.focus();
+			return;
+		}
+		let url = '../CommentServlet?cmd=insert&name=' + name + '&content='
+				+ content;
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', url);
+		xhtp.send();
+		xhtp.onload = addResult;
+	}
+	// 댓글등록 콜백.
+	   function addResult() {
+      let xmlDoc = this.responseXML;
+      let code = xmlDoc.getElementsByTagName('code')[0].innerHTML;
+      if (code == 'success') {
+         let listDiv = document.getElementById('commentList');
+         let comment = xmlDoc.getElementsByTagName('data')[0];
+         let commentDiv = makeCommentView(comment); /* 화면에 있던 한건 받아서 추가 입력. */
+         listDiv.appendChild(commentDiv);
+
+      } else if (code == 'error') {
+         let msg = xmlDoc.getElementsByTagName('data')[0].innerHTML;
+         window.alert(msg);
+      }
+   }
+	// 수정버튼 클릭시.
+	function viewUpdateForm(id) {
+		let updateFormDiv = document.getElementById('commentUpdate');
+		let commentDiv = document.getElementById(id);
+		console.log(commentDiv);
 	}
 </script>
 </head>

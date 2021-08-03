@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DAO {
 	protected Connection conn;
 	protected PreparedStatement psmt; // sql명령을 보내고 실행하기 위한 객체
 	protected ResultSet rs; // select 결과를 받을 수 있는 객
+	protected Statement stmt;
 
 	public void connect() {
 		try {
@@ -19,9 +21,7 @@ public class DAO {
 			System.out.println("connected!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			
-			
+				
 		}
 	}
 

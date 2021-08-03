@@ -17,7 +17,6 @@ public class CommentServlet extends HttpServlet {
 
 	public CommentServlet() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,47 +24,93 @@ public class CommentServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/xml;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		PrintWriter out = response.getWriter();
 		String cmd = request.getParameter("cmd");
 
 		if (cmd == null) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("<result>");
-			sb.append("<code>error</code>");
-			sb.append("<data>" + "</data>");
-			sb.append("</result>");
-			out.print(sb.toString());
+			out.println(errorXML("cmd null"));
 
 		} else if (cmd.equals("selectAll")) {
 			try {
-			List<HashMap<String, Object>> list = CommentDAO.getInstance().selectAll();
-			StringBuffer sb = new StringBuffer();
-			sb.append("<result>");
-			sb.append("<code>success</code>");
-			sb.append("<data>");
-			for (HashMap<String, Object> map : list) {
-				sb.append("<row>");
-				sb.append("<id>" + map.get("id") + "</id>");
-				sb.append("<name>" + map.get("name") + "</name>");
-				sb.append("<content>" + map.get("content") + "</content>");
-				sb.append("</row>");
-			}
-			sb.append("</data>");
-			sb.append("</result>");
-			out.print(sb.toString());
+				List<HashMap<String, Object>> list = //
+						CommentDAO.getInstance().selectAll();
+
+				StringBuffer sb = new StringBuffer();
+				sb.append("<result>");
+				sb.append("<code>success</code>");
+				sb.append("<data>");
+				for (HashMap<String, Object> map : list) {
+					sb.append("<row>");
+					sb.append("  <id>" + map.get("id") + "</id>");
+					sb.append("  <name>" + map.get("name") + "</name>");
+					sb.append("  <content>" + map.get("content") + "</content>");
+					sb.append("</row>");
+				}
+				sb.append("</data>");
+				sb.append("</result>");
+				out.print(sb.toString());
+
 			} catch (Exception e) {
-				e.printStackTrace();
+				out.println(errorXML(e.getMessage()));
 			}
+
 		} else if (cmd.equals("insert")) {
+			try {
+				String name = request.getParameter("name");
+				String content = request.getParameter("content");
+				Comment comment = new Comment();
+				comment.setName(name);
+				comment.setContent(content);
+				HashMap<String, Object> map = CommentDAO.getInstance().insert(comment);
+
+				out.println(dataXML(map));
+
+			} catch (Exception e) {
+				out.println(errorXML(e.getMessage()));
+			}
+		} else if (cmd.equals("update")) {
+			String id = request.getParameter("id");
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+			Comment comment = new Comment();
+			comment.setId(id);
+			comment.setName(name);
+			comment.setContent(content);
+			CommentDAO.getInstance().update(comment);
+
+			HashMap<String, Object> map = CommentDAO.getInstance().update(comment);
+
+			out.println(dataXML(map));
 
 		}
+
+	} // end of doGet();
+
+	private String dataXML(HashMap<String, Object> map) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<result>");
+		sb.append("<code>success</code>");
+		sb.append("<data>");
+		sb.append("  <id>" + map.get("id") + "</id>");
+		sb.append("  <name>" + map.get("name") + "</name>");
+		sb.append("  <content>" + map.get("content") + "</content>");
+		sb.append("</data>");
+		sb.append("</result>");
+		return sb.toString();
+	}
+
+	private String errorXML(String msg) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<result>");
+		sb.append("<code>error</code>");
+		sb.append("<data>" + msg + "</data>");
+		sb.append("</result>");
+		return sb.toString();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 
