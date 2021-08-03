@@ -14,6 +14,16 @@ public class CommentDAO extends DAO {
 		instance = new CommentDAO();
 		return instance;
 	}
+	
+	//글등록
+	public HashMap<String, Object> insert(Comment comment) {
+		//id_repository 테이블에서 현재 시퀀스 번호.
+		//comments 테이블에 추가.
+		// id_repository에 새로운 시퀀스 번호로 변경.
+		
+		return null;
+	}
+	
 	//글목록
 	public List<HashMap<String, Object>> selectAll() {
 		connect();

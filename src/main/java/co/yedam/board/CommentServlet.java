@@ -34,27 +34,30 @@ public class CommentServlet extends HttpServlet {
 			StringBuffer sb = new StringBuffer();
 			sb.append("<result>");
 			sb.append("<code>error</code>");
-			sb.append("<data>");
-			sb.append("cmd null");
-			sb.append("</data>");
+			sb.append("<data>" + "</data>");
 			sb.append("</result>");
 			out.print(sb.toString());
 
 		} else if (cmd.equals("selectAll")) {
+			try {
 			List<HashMap<String, Object>> list = CommentDAO.getInstance().selectAll();
 			StringBuffer sb = new StringBuffer();
 			sb.append("<result>");
 			sb.append("<code>success</code>");
+			sb.append("<data>");
 			for (HashMap<String, Object> map : list) {
-				sb.append("<data>");
+				sb.append("<row>");
 				sb.append("<id>" + map.get("id") + "</id>");
 				sb.append("<name>" + map.get("name") + "</name>");
 				sb.append("<content>" + map.get("content") + "</content>");
-				sb.append("</data>");
+				sb.append("</row>");
 			}
+			sb.append("</data>");
 			sb.append("</result>");
 			out.print(sb.toString());
-
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (cmd.equals("insert")) {
 
 		}
