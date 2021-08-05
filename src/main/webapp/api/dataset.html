@@ -15,44 +15,31 @@
 	$(document).ready(function() {
 		$.ajax({
 			url : '../GetBoardServlet',
-			dataType:'json',
-			success : load,
+			//dataType:'json',
+			success : successCallBack,
 			error : function(reject) {
 				console.log(reject);
 			}
 		});
-
-		function load(resovle) {
-			var dataSet = resolve.data;
-			$('#example').DataTable({
-				data : dataSet,
-				columns : [ 
-					{title : "ID"}, 
-					{title : "Name"},
-					{title : "Content"}
-				]
-			});
-		}
 	});
+	function successCallBack(resolve) {
+		var dataSet = resolve.data;
+		$('#example').DataTable({
+			data : dataSet,
+			columns : [ {
+				title : "ID"
+			}, {
+				title : "Name"
+			}, {
+				title : "Content"
+			} ]
+		});
+	}
 </script>
 </head>
 
 <body>
 	<table id="example" class="display" style="width: 100%">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Content</th>
-			</tr>
-		</thead>
-		<tfoot>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Content</th>
-			</tr>
-		</tfoot>
 	</table>
 </body>
 
