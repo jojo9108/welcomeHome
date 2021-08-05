@@ -42,9 +42,36 @@ public class CommentServlet extends HttpServlet {
 			Gson gson = new GsonBuilder().create();
 			String json = gson.toJson(list);
 			out.println(json);
+			
+		} else if (cmd.equals("insertJson")) {
+			response.setContentType("text/json;charset=utf-8");
+
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+			Comment comment = new Comment();
+			comment.setName(name);
+			comment.setContent(content);
+			HashMap<String, Object> map = CommentDAO.getInstance().insert(comment);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
+			
+		} else if (cmd.equals("updateJson")) {	
+			response.setContentType("text/json;charset=utf-8");
+			
+			String id = request.getParameter("id");
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+			Comment comment = new Comment();
+			comment.setId(id);
+			comment.setName(name);
+			comment.setContent(content);
+			HashMap<String, Object> map = CommentDAO.getInstance().update(comment);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
 
 		} else if (cmd.equals("deleteJson")) {
 			response.setContentType("text/json;charset=utf-8");
+			
 			String id = request.getParameter("id");
 			HashMap<String, Object> map = CommentDAO.getInstance().delete(id);
 			
@@ -75,7 +102,7 @@ public class CommentServlet extends HttpServlet {
 				out.println(errorXML(e.getMessage()));
 			}
 
-		} else if (cmd.equals("insert")) { // 2)한건입력
+		} else if (cmd.equals("insert")) { 
 			try {
 				String name = request.getParameter("name");
 				String content = request.getParameter("content");
@@ -89,19 +116,8 @@ public class CommentServlet extends HttpServlet {
 			} catch (Exception e) {
 				out.println(errorXML(e.getMessage()));
 			}
-		} else if (cmd.equals("insertJson")) {
-			response.setContentType("text/json;charset=utf-8");
 
-			String name = request.getParameter("name");
-			String content = request.getParameter("content");
-			Comment comment = new Comment();
-			comment.setName(name);
-			comment.setContent(content);
-			HashMap<String, Object> map = CommentDAO.getInstance().insert(comment);
-			Gson gson = new GsonBuilder().create();
-			out.println(gson.toJson(map));
-
-		} else if (cmd.equals("update")) { // 3) 수정.
+		} else if (cmd.equals("update")) {
 			String id = request.getParameter("id");
 			String name = request.getParameter("name");
 			String content = request.getParameter("content");

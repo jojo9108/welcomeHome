@@ -17,37 +17,57 @@ public class CommentDAO extends DAO {
 		return instance;
 	}
 
-	// 글 삭제(매개값: 글번호)
+	public HashMap<String, Integer> getAmtByCountry() {
+		connect();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		String sql = "select billingCountry, sum(total) as amt from invoices i group by BillingCountry";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				map.put(rs.getString(1), rs.getInt(2)); // getString(1) => 첫번째 칼럼이라는 뜻.
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return map;
+	}
+
+	// 글삭제(매개값: 글번호)
 	public HashMap<String, Object> delete(String id) {
 		connect();
-		String sql = "delete from comments where id = ?";
+		String sql = "delete from comments where id=?";
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			int r = psmt.executeUpdate();
-			System.out.println("삭제완료:" + r);
-			HashMap<String, Object> map = new HashMap<String, Object>();
+			System.out.println("삭제됨: " + r);
 			map.put("id", id);
-			
+
 			return map;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+
 		} finally {
 			disconnect();
 		}
 		return null;
 	}
 
-	// 글내용수정
+	// 글내용 수정
 	public HashMap<String, Object> update(Comment comment) {
 		connect();
+		String sql = "update comments set name=?, content=? where id=?";
 		try {
-			psmt = conn.prepareStatement("update comments set name=?, content=? where id=?");
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, comment.getName());
 			psmt.setString(2, comment.getContent());
 			psmt.setString(3, comment.getId());
-			int r = psmt.executeUpdate(); // 조회: executeQuery, 입력수정삭제
+			int r = psmt.executeUpdate();
 			System.out.println("수정: " + r);
 
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -57,10 +77,9 @@ public class CommentDAO extends DAO {
 
 			return map;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("msg", e.getMessage());
+
 		} finally {
 			disconnect();
 		}
@@ -77,7 +96,7 @@ public class CommentDAO extends DAO {
 		try {
 			conn.setAutoCommit(false);
 			// 1) 현재 시퀀스 번호 가져오고.
-			stmt = conn.createStatement(); // psmt ???
+			stmt = conn.createStatement(); // pstmt ???
 			rs = stmt.executeQuery("select value from id_repository where name='comment'");
 			if (rs.next()) {
 				nextId = rs.getInt("value");
